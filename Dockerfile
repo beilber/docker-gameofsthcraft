@@ -11,15 +11,18 @@
 # -----------------------------------------------------------------------------
 
 
-FROM   ubuntu:14.04
+FROM	ubuntu:14.04
 
-ENV    DEBIAN_FRONTEND noninteractive
+MAINTAINER Brian Eilber <brian.eilber@gmail.com>
 
-RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install software-properties-common
-RUN    sudo apt-add-repository --yes ppa:webupd8team/java; apt-get --yes update
-RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
-       echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get --yes install curl oracle-java7-installer unzip
+ENV	DEBIAN_FRONTEND noninteractive
+
+RUN	apt-get --yes update; apt-get --yes upgrade; apt-get --yes install software-properties-common
+RUN	sudo apt-add-repository --yes ppa:webupd8team/java; apt-get --yes update
+RUN	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
+	echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
+	apt-get --yes install curl oracle-java7-installer unzip && \
+	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN	mkdir /server
 RUN	wget http://files.spankythehero.com/gameofsthcraft-qa.112-server.zip -O /server/pack.zip
