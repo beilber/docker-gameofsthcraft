@@ -25,7 +25,7 @@ RUN	echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-s
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN	mkdir /server
-RUN	wget http://files.spankythehero.com/gameofsthcraft-qa.114-server.zip -O /server/pack.zip
+RUN	wget http://files.spankythehero.com/gameofsthcraft-qa.115-server.zip -O /server/pack.zip
 RUN	cd /server && unzip pack.zip && rm pack.zip
 RUN	cd /server && sh install.sh
 
